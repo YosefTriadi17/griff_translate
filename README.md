@@ -24,7 +24,7 @@ A beautiful **Neumorphic (Soft UI)** web translator powered by **DeepL API**. Tr
 
 ## 🚀 Live Demo
 
-👉 [https://YosefTriadi17.github.io/grif_translate/](https://YosefTriadi17.github.io/grif_translate/)
+👉 [https://YosefTriadi17.github.io/grif_translate/](https://YosefTriadi17.github.io/griff_translate/)
 
 ## 🛠️ Tech Stack
 
