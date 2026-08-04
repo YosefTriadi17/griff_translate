@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Griff Translate — A beautiful Neumorphic web translator powered by DeepL. Translate text between 30+ languages instantly.">
+    <title>Griff Translate — Neumorphic Web Translator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header class="header" id="main-header">
+        <div class="header-inner">
+            <div class="logo" id="logo">
+                <div class="logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 8l6 6"/>
+                        <path d="M4 14l6-6 2-3"/>
+                        <path d="M2 5h12"/>
+                        <path d="M7 2h1"/>
+                        <path d="M22 22l-5-10-5 10"/>
+                        <path d="M14 18h6"/>
+                    </svg>
+                </div>
+                <span class="logo-text">Griff<span class="logo-accent">Translate</span></span>
+            </div>
+            <nav class="nav-links" id="nav-links">
+                <a href="#" class="nav-link active" id="nav-translate">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6"/><path d="M4 14l6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/></svg>
+                    <span>Translate</span>
+                </a>
+            </nav>
+            <div class="header-actions">
+                <button class="neu-btn-icon" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+                    <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                    <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main" id="main-content">
+        <!-- Hero / Translator Section -->
+        <section class="translator-section" id="translator-section">
+            <div class="section-header">
+                <h1 id="page-title">Translate Text Instantly</h1>
+                <p class="section-subtitle">Powered by DeepL — Supporting 30+ languages with AI-powered translations</p>
+            </div>
+
+            <!-- Language Selector Bar -->
+            <div class="language-bar neu-card" id="language-bar">
+                <div class="lang-selector-group">
+                    <div class="lang-selector" id="source-lang-wrapper">
+                        <label class="lang-label">From</label>
+                        <div class="searchable-dropdown" id="source-dropdown" data-value="auto">
+                            <button class="dropdown-trigger neu-select" type="button" aria-haspopup="listbox" aria-expanded="false" id="source-lang-trigger">
+                                <span class="dropdown-display">Auto Detect</span>
+                                <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="dropdown-panel" role="listbox" aria-label="Source language">
+                                <div class="dropdown-search-wrapper">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    <input type="text" class="dropdown-search" placeholder="Search language..." autocomplete="off" spellcheck="false" id="source-search">
+                                </div>
+                                <ul class="dropdown-list" id="source-lang-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="swap-btn neu-btn-icon" id="swap-languages" aria-label="Swap languages" title="Swap languages">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+                    </button>
+
+                    <div class="lang-selector" id="target-lang-wrapper">
+                        <label class="lang-label">To</label>
+                        <div class="searchable-dropdown" id="target-dropdown" data-value="EN">
+                            <button class="dropdown-trigger neu-select" type="button" aria-haspopup="listbox" aria-expanded="false" id="target-lang-trigger">
+                                <span class="dropdown-display">English</span>
+                                <svg class="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                            </button>
+                            <div class="dropdown-panel" role="listbox" aria-label="Target language">
+                                <div class="dropdown-search-wrapper">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                    <input type="text" class="dropdown-search" placeholder="Search language..." autocomplete="off" spellcheck="false" id="target-search">
+                                </div>
+                                <ul class="dropdown-list" id="target-lang-list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Translation Panels -->
+            <div class="translation-panels" id="translation-panels">
+                <!-- Source Panel -->
+                <div class="translation-panel neu-card" id="source-panel">
+                    <div class="panel-header">
+                        <span class="panel-label" id="source-panel-label">Source Text</span>
+                        <div class="panel-actions">
+                            <span class="char-count" id="char-count">0 / 5000</span>
+                            <button class="neu-btn-sm" id="clear-source" aria-label="Clear text" title="Clear text">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <textarea 
+                        id="source-text" 
+                        class="neu-textarea" 
+                        placeholder="Type or paste text here..."
+                        maxlength="5000"
+                        rows="8"
+                        aria-label="Text to translate"
+                    ></textarea>
+                    <div class="panel-footer">
+                        <div class="detected-lang" id="detected-lang" style="display:none;">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                            <span id="detected-lang-text">Detected: —</span>
+                        </div>
+                        <button class="neu-btn-primary translate-btn" id="translate-btn" aria-label="Translate text">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            <span>Translate</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Target Panel -->
+                <div class="translation-panel neu-card" id="target-panel">
+                    <div class="panel-header">
+                        <span class="panel-label" id="target-panel-label">Translation</span>
+                        <div class="panel-actions">
+                            <button class="neu-btn-sm" id="copy-translation" aria-label="Copy translation" title="Copy to clipboard">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="neu-output" id="target-text" aria-live="polite" aria-label="Translation result">
+                        <span class="placeholder-text">Translation will appear here...</span>
+                    </div>
+                    <!-- Loading Indicator -->
+                    <div class="loading-indicator" id="loading-indicator" style="display:none;">
+                        <div class="loading-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <span class="loading-text">Translating...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions" id="quick-actions">
+                <div class="quick-action-chips">
+                    <button class="chip" data-target="JA" id="chip-ja">🇯🇵 Japanese</button>
+                    <button class="chip" data-target="KO" id="chip-ko">🇰🇷 Korean</button>
+                    <button class="chip" data-target="ZH" id="chip-zh">🇨🇳 Chinese</button>
+                    <button class="chip" data-target="FR" id="chip-fr">🇫🇷 French</button>
+                    <button class="chip" data-target="DE" id="chip-de">🇩🇪 German</button>
+                    <button class="chip" data-target="ES" id="chip-es">🇪🇸 Spanish</button>
+                    <button class="chip" data-target="ID" id="chip-id">🇮🇩 Indonesian</button>
+                    <button class="chip" data-target="AR" id="chip-ar">🇸🇦 Arabic</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats / Info Cards -->
+        <section class="info-section" id="info-section">
+            <div class="info-cards">
+                <div class="info-card neu-card" id="info-languages">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-value" id="lang-count">—</span>
+                        <span class="info-label">Languages</span>
+                    </div>
+                </div>
+                <div class="info-card neu-card" id="info-ai">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-value">DeepL</span>
+                        <span class="info-label">AI Engine</span>
+                    </div>
+                </div>
+                <div class="info-card neu-card" id="info-speed">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-value">Instant</span>
+                        <span class="info-label">Response</span>
+                    </div>
+                </div>
+                <div class="info-card neu-card" id="info-secure">
+                    <div class="info-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    </div>
+                    <div class="info-content">
+                        <span class="info-value">Secure</span>
+                        <span class="info-label">Encrypted</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast / Notification -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <p>&copy; 2026 GriffTranslate. Powered by DeepL API.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
