@@ -8,11 +8,41 @@
 
   // ── Config ──────────────────────────────────────────────
   const API_KEY = '25f9e843-9882-4573-839f-0dbf2dd4d76c:fx';
-  const CORS_PROXY = 'https://corsproxy.io/?url=';
-  const TRANSLATE_URL = CORS_PROXY + encodeURIComponent('https://api-free.deepl.com/v2/translate');
-  const LANGUAGES_URL = CORS_PROXY + encodeURIComponent('https://api.deepl.com/v2/languages');
+  const DEEPL_TRANSLATE_URL = 'https://api-free.deepl.com/v2/translate';
+  const DEEPL_LANGUAGES_URL = 'https://api.deepl.com/v2/languages';
   const MAX_CHARS = 5000;
   const AUTO_TRANSLATE_DELAY = 1000; // 1 second debounce
+
+  // CORS proxy fallback list — tried in order until one succeeds
+  const CORS_PROXIES = [
+    (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+    (url) => `https://corsproxy.io/?url=${encodeURIComponent(url)}`,
+    (url) => `https://cors-anywhere.herokuapp.com/${url}`,
+    (url) => url  // direct (works if CORS headers are present)
+  ];
+
+  /**
+   * Fetch with CORS-proxy fallback.
+   * Tries each proxy in order; returns the first successful Response.
+   */
+  async function fetchWithProxy(targetUrl, options = {}) {
+    let lastError;
+    for (const proxyFn of CORS_PROXIES) {
+      const proxiedUrl = proxyFn(targetUrl);
+      try {
+        const res = await fetch(proxiedUrl, options);
+        if (res.ok || (res.status >= 400 && res.status < 500)) {
+          // Success or client-error (API key issues, etc.) — return as-is
+          return res;
+        }
+        lastError = new Error(`Proxy returned ${res.status}`);
+      } catch (err) {
+        lastError = err;
+        // Network error / DNS failure — try next proxy
+      }
+    }
+    throw lastError || new Error('All CORS proxies failed');
+  }
 
   // Fallback languages from languages.json
   const FALLBACK_LANGUAGES = [
@@ -174,7 +204,7 @@
   // ── Languages ───────────────────────────────────────────
   async function loadLanguages() {
     try {
-      const res = await fetch(LANGUAGES_URL, {
+      const res = await fetchWithProxy(DEEPL_LANGUAGES_URL, {
         headers: { 'Authorization': `DeepL-Auth-Key ${API_KEY}` }
       });
       if (!res.ok) throw new Error('API error');
@@ -255,7 +285,7 @@
     }
 
     try {
-      const res = await fetch(TRANSLATE_URL, {
+      const res = await fetchWithProxy(DEEPL_TRANSLATE_URL, {
         method: 'POST',
         headers: {
           'Authorization': `DeepL-Auth-Key ${API_KEY}`,
