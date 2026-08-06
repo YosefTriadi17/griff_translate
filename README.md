@@ -24,7 +24,7 @@ A beautiful **Neumorphic (Soft UI)** web translator powered by **DeepL API**. Tr
 
 ## 🚀 Live Demo
 
-👉 [https://YosefTriadi17.github.io/grif_translate/](https://YosefTriadi17.github.io/griff_translate/)
+👉 [https://YosefTriadi17.github.io/griff_translate/](https://YosefTriadi17.github.io/griff_translate/)
 
 ## 🛠️ Tech Stack
 
@@ -35,12 +35,12 @@ A beautiful **Neumorphic (Soft UI)** web translator powered by **DeepL API**. Tr
 | Vanilla JavaScript | API calls, DOM manipulation, state management |
 | [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) | Typography |
 | [DeepL API](https://www.deepl.com/docs-api) | Translation engine |
-| [corsproxy.io](https://corsproxy.io/) | CORS proxy for browser-side API calls |
+| Multi-proxy fallback | CORS proxy fallback (allorigins, corsproxy.io, cors-anywhere) |
 
 ## 📁 Project Structure
 
 ```
-grif_translate/
+griff_translate/
 ├── index.html          # Main HTML — header, language bar, translation panels, chips, info cards
 ├── styles.css          # Neumorphism design system (light/dark themes, responsive breakpoints)
 ├── app.js              # DeepL API integration, searchable dropdowns, auto-translate, theme toggle

@@ -186,7 +186,7 @@
 
   // ── Theme ───────────────────────────────────────────────
   function loadTheme() {
-    const saved = localStorage.getItem('grif-theme');
+    const saved = localStorage.getItem('griff-theme');
     if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
   }
 
@@ -194,10 +194,10 @@
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     if (isDark) {
       document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('grif-theme', 'light');
+      localStorage.setItem('griff-theme', 'light');
     } else {
       document.documentElement.setAttribute('data-theme', 'dark');
-      localStorage.setItem('grif-theme', 'dark');
+      localStorage.setItem('griff-theme', 'dark');
     }
   }
 
